@@ -33,7 +33,10 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/posts">Posts</a>
+                <a class="nav-link" href="/posts/create">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/people/index">People</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/profile">Profile</a>
@@ -52,10 +55,31 @@
             <p>This is a brief description of your app and its features.</p>
         </div>
     </div>
-</div>
+</div><h2>Messages</h2>
+@if ($messages)
+    @if (count($messages) > 0)
+        @foreach ($messages as $message)
+            <div class="message">
+                <p>{{ $message->content }}</p>
+                <p>Posted by: {{ $message->user->name }}</p>
+            </div>
+        @endforeach
+    @else
+        <p>No messages to display.</p>
+    @endif
+@else
+    <p>No messages to display.</p>
+@endif
+
+<a href="{{ route('posts.create') }}" class="btn btn-primary">Create New Message</a>
+
+
+
 
 <!-- Add a Footer -->
 <footer class="bg-dark text-light text-center py-3">
     &copy; 2023 Your App Name. All rights reserved.
 </footer>
 @endsection
+
+
